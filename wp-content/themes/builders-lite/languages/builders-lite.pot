@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Builder\n"
+"POT-Creation-Date: 2021-09-30 15:13+0530\n"
+"PO-Revision-Date: 2021-09-30 15:13+0530\n"
+"Last-Translator: \n"
+"Language-Team: Alexathemes team <support@alexathemes.net>\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;esc_html_e;esc_attr_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: comments.php:35
+#: comments.php:53
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:63
+msgid "Comments are closed."
+msgstr ""
+
+#: content.php:28
+msgid "Read More &raquo;"
+msgstr ""
+
+#: footer.php:15
+msgid ". Powered by WordPress"
+msgstr ""
+
+#: no-results.php:11
+msgid "Nothing Found"
+msgstr ""
+
+#: no-results.php:19
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: no-results.php:22
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: sidebar.php:12
+msgid "Archives"
+msgstr ""
+
+#: sidebar.php:18
+msgid "Meta"
+msgstr ""
+
+#: inc/template-tags.php:38
+msgid "Pingback:"
+msgstr ""
+
+#: inc/template-tags.php:57
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/template-parts/navigation.php:3
+msgid "Menu"
+msgstr ""
