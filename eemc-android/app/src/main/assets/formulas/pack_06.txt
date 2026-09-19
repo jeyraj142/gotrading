@@ -1,0 +1,14 @@
+Reliability|SAIDI|SAIDI = Σ(Customer interruption minutes)/Customers served
+Reliability|SAIFI|SAIFI = Σ(Customer interruptions)/Customers served
+Reliability|CAIDI|CAIDI = SAIDI/SAIFI
+Reliability|ASAI|ASAI = Service hours available/Customer hours demanded
+Reliability|ENS|ENS = Σ(Pinterrupted×duration)
+Reliability|AENS|AENS = ENS/Customers served
+Reliability|Availability|A = MTBF/(MTBF+MTTR)
+Reliability|Failure Rate|λ = 1/MTBF
+Earthing & Safety|Earth Rod Resistance Approx.|R = ρ/(2πL)[ln(4L/d)−1]
+Earthing & Safety|Soil Resistivity Wenner|ρ = 2πaR
+Earthing & Safety|Ground Potential Rise|GPR = Ig×Rg
+Earthing & Safety|Adiabatic Earth Conductor|S = I√t/k
+Earthing & Safety|Touch Voltage Basic|Vtouch = Ifault×Rpath
+Earthing & Safety|Earth Loop Fault Current|If = U0/Zs
