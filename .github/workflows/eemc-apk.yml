@@ -1,4 +1,4 @@
-name: Build EEMC Native Pro APK
+name: Build EEMC Native Formula Pro APK
 
 on:
   push:
@@ -32,9 +32,9 @@ jobs:
           ANDROID_HOME: /usr/local/lib/android/sdk
         run: gradle -p eemc-android assembleDebug --stacktrace
       - name: Rename APK
-        run: cp eemc-android/app/build/outputs/apk/debug/app-debug.apk EEMC-v3.0-Native-Pro.apk
+        run: cp eemc-android/app/build/outputs/apk/debug/app-debug.apk EEMC-v4.0-Native-Formula-Pro.apk
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: EEMC-v3.0-Native-Pro-APK
-          path: EEMC-v3.0-Native-Pro.apk
+          name: EEMC-v4.0-Native-Formula-Pro-APK
+          path: EEMC-v4.0-Native-Formula-Pro.apk
