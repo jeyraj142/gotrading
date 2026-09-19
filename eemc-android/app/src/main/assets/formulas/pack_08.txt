@@ -1,0 +1,11 @@
+Solar / Renewables|PV Array Power|Parray = N×Pmodule
+Solar / Renewables|Daily Solar Energy|E = Parray×PSH×PR
+Solar / Renewables|String Voltage|Vstring = Nseries×Vmp
+Solar / Renewables|String Voc|Voc,string = Nseries×Voc
+Solar / Renewables|Array Current|Iarray = Nparallel×Imp
+Solar / Renewables|Inverter Loading Ratio|ILR = DC array kW/AC inverter kW
+Solar / Renewables|Battery Required Ah|Ah = Wh/(V×DoD×η)
+Lighting / Building|Illuminance|E = Φ/A
+Lighting / Building|Lumens Required|Φ = E×A/(UF×MF)
+Lighting / Building|Fixtures Required|N = Φrequired/Φfixture
+Lighting / Building|Lighting Energy|kWh = kW×h
