@@ -1,0 +1,19 @@
+Motors & Drives|Synchronous Speed|Ns = 120f/P
+Motors & Drives|Slip|s% = (Ns−Nr)/Ns ×100
+Motors & Drives|Rotor Frequency|fr = s f
+Motors & Drives|Torque from Power|T = 9550 PkW/n
+Motors & Drives|Motor Input Power 3φ|Pin = √3VI PF
+Motors & Drives|Motor Efficiency|η = Pout/Pin ×100
+Motors & Drives|Motor Current|I = Pout/(√3V PF η)
+Motors & Drives|Horsepower to kW|kW = HP×0.7457
+Motors & Drives|kW to Horsepower|HP = kW×1.341
+Motors & Drives|VFD Speed Approx.|n ≈ 120f/P × (1−s)
+Cables & Voltage Drop|DC Voltage Drop|ΔV = 2ILR
+Cables & Voltage Drop|1φ Voltage Drop|ΔV = 2IL(Rcosφ+Xsinφ)
+Cables & Voltage Drop|3φ Voltage Drop|ΔV = √3IL(Rcosφ+Xsinφ)
+Cables & Voltage Drop|Voltage Drop %|ΔV% = ΔV/V ×100
+Cables & Voltage Drop|Cable Resistance|R = ρL/A
+Cables & Voltage Drop|Cable Power Loss 1φ|Ploss = 2I²R
+Cables & Voltage Drop|Cable Power Loss 3φ|Ploss = 3I²R
+Cables & Voltage Drop|Short Circuit Withstand|S = I√t/k
+Cables & Voltage Drop|Parallel Cable Current|Iper = Itotal/n
