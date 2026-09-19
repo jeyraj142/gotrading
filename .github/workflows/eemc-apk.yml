@@ -1,8 +1,8 @@
-name: Build EEMC APK
+name: Build EEMC Native Pro APK
 
 on:
   push:
-    branches: [eemc-apk-build]
+    branches: [eemc-native-pro]
   workflow_dispatch:
 
 jobs:
@@ -27,14 +27,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
-      - name: Build APK
+      - name: Build native APK
         env:
           ANDROID_HOME: /usr/local/lib/android/sdk
         run: gradle -p eemc-android assembleDebug --stacktrace
       - name: Rename APK
-        run: cp eemc-android/app/build/outputs/apk/debug/app-debug.apk EEMC-v1.0.apk
+        run: cp eemc-android/app/build/outputs/apk/debug/app-debug.apk EEMC-v3.0-Native-Pro.apk
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: EEMC-v1.0-APK
-          path: EEMC-v1.0.apk
+          name: EEMC-v3.0-Native-Pro-APK
+          path: EEMC-v3.0-Native-Pro.apk
