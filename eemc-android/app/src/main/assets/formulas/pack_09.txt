@@ -1,0 +1,11 @@
+Generators|Generator Current|I = kVA×1000/(√3V)
+Generators|Generator kVA|kVA = √3VI/1000
+Generators|Frequency-Speed|f = PN/120
+Generators|Generator Efficiency|η = Pout/Pin×100
+Generators|Load Percentage|Load% = kW/kWrated×100
+Power Quality & Harmonics|Voltage THD|THDv = √ΣVn²/V1 ×100
+Power Quality & Harmonics|Current THD|THDi = √ΣIn²/I1 ×100
+Power Quality & Harmonics|Harmonic Frequency|fn = n×f1
+Power Quality & Harmonics|Crest Factor|CF = Peak/RMS
+Power Quality & Harmonics|Voltage Unbalance NEMA|%VU = Max deviation from avg/Avg×100
+Power Quality & Harmonics|Current Unbalance|%IU = Max deviation from avg/Avg×100
