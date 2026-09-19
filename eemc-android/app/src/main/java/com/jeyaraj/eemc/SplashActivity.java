@@ -53,7 +53,7 @@ public class SplashActivity extends Activity {
         dev.setGravity(Gravity.CENTER);
         root.addView(dev);
 
-        TextView strip = t("FORMULAS  •  WORKING  •  LEARNING", 14, Color.rgb(7,55,93), true);
+        TextView strip = t("172 FORMULAS  •  20 CATEGORIES  •  OFFLINE", 14, Color.rgb(7,55,93), true);
         strip.setGravity(Gravity.CENTER);
         strip.setPadding(22,12,22,12);
         GradientDrawable white = new GradientDrawable();
@@ -75,7 +75,7 @@ public class SplashActivity extends Activity {
         qLp.topMargin = 28;
         root.addView(quote, qLp);
 
-        TextView footer = t("CALCULATE  •  LEARN  •  APPLY  •  GROW", 15, Color.WHITE, true);
+        TextView footer = t("FORMULA  •  DERIVATION  •  CALCULATOR  •  PDF", 15, Color.WHITE, true);
         footer.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams fLp = new LinearLayout.LayoutParams(-1,0,1);
         footer.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
@@ -85,9 +85,9 @@ public class SplashActivity extends Activity {
         setContentView(root);
 
         new Handler(getMainLooper()).postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            startActivity(new Intent(SplashActivity.this, FormulaLibraryActivity.class));
             finish();
-        }, 1350);
+        }, 1200);
     }
 
     private TextView t(String s, float size, int color, boolean bold) {
