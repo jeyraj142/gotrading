@@ -1,25 +1,38 @@
 package com.jeyaraj.eemc;
 
-import android.app.Activity;
+import android.app.*;
 import android.os.Bundle;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.content.*;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.view.*;
+import android.widget.*;
+import java.util.*;
 
 public class MainActivity extends Activity {
-    private WebView webView;
-    @Override public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        webView = new WebView(this);
-        setContentView(webView);
-        WebSettings s = webView.getSettings();
-        s.setJavaScriptEnabled(true);
-        s.setDomStorageEnabled(true);
-        s.setAllowFileAccess(true);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("file:///android_asset/index.html");
+    LinearLayout root, fields, output; Spinner calc; EditText[] in = new EditText[5]; Button quick, engineer, learning; String mode="Engineer";
+    final String[] names={"Ohm's Law - Voltage","Ohm's Law - Current","DC Power","Single-Phase Current","Three-Phase Current","Three-Phase kVA","Transformer Full-Load Current","Transformer Fault Current","Transformer Loading","Motor Synchronous Speed","Motor Torque","4-20 mA Scaling","Battery Backup Time","Short-Circuit MVA","Feeder / Transformer Loading"};
+    final String[][] labels={{"Current (A)","Resistance (ohm)"},{"Voltage (V)","Resistance (ohm)"},{"Voltage (V)","Current (A)"},{"Power (kW)","Voltage (V)","Power Factor","Efficiency (%)"},{"Power (kW)","Line Voltage (V)","Power Factor","Efficiency (%)"},{"Line Voltage (V)","Current (A)"},{"Rating (MVA)","Voltage (kV)"},{"Rating (MVA)","Voltage (kV)","Impedance (%)"},{"Actual Load (MVA)","Rated MVA"},{"Frequency (Hz)","Poles"},{"Shaft Power (kW)","Speed (rpm)"},{"Loop Current (mA)","LRV","URV"},{"Capacity (Ah)","Voltage (V)","Usable Efficiency (%)","Load (W)"},{"Voltage (kV)","Fault Current (kA)"},{"Actual (A or MVA)","Rating (same unit)"}};
+    final String[] formulas={"V = I x R","I = V / R","P = V x I","I = P / (V x PF x eta)","I = P / (sqrt(3) x V x PF x eta)","S = sqrt(3) x V x I / 1000","I = S / (sqrt(3) x V)","Isc = Irated x 100 / Z%","Loading% = Actual / Rated x 100","Ns = 120 f / poles","T = 9550 x kW / rpm","PV = LRV + (mA-4)/16 x (URV-LRV)","Hours = Ah x V x eta / W","Ssc = sqrt(3) x kV x kA","Loading% = Actual / Rating x 100"};
+    final String[] units={"V","A","W","A","A","kVA","A","A","%","rpm","N.m","EU","h","MVA","%"};
+    final String[] quotes={"Every safe circuit begins with a correct calculation.","Measure twice, energize once.","Electricity rewards precision.","Reliable grids are built one verified calculation at a time.","Know the current before you choose the conductor.","The best troubleshooting tool is understanding the circuit.","Formula, measurement, verification - engineering confidence.","Power is useful only when it is controlled safely."};
+
+    @Override public void onCreate(Bundle b){super.onCreate(b); getWindow().setStatusBarColor(Color.rgb(7,17,38)); build();}
+    TextView tv(String s,int sp,int color,boolean bold){TextView t=new TextView(this);t.setText(s);t.setTextSize(sp);t.setTextColor(color);t.setPadding(10,8,10,8);if(bold)t.setTypeface(Typeface.DEFAULT,Typeface.BOLD);return t;}
+    void build(){ScrollView sv=new ScrollView(this);root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setPadding(20,20,20,30);root.setBackgroundColor(Color.rgb(7,17,38));sv.addView(root);setContentView(sv);
+        TextView title=tv("Electrical Engineer\nMaster Calculator",34,Color.WHITE,true);title.setBackgroundColor(Color.rgb(28,78,190));title.setPadding(24,24,24,8);root.addView(title);
+        TextView sub=tv("EEMC  •  Offline Electrical Engineering Toolbox\nDeveloped by Jeyaraj",17,Color.rgb(255,230,90),true);sub.setBackgroundColor(Color.rgb(28,78,190));sub.setPadding(24,4,24,18);root.addView(sub);
+        int last=getPreferences(0).getInt("q",-1),q=new Random().nextInt(quotes.length);if(q==last)q=(q+1)%quotes.length;getPreferences(0).edit().putInt("q",q).apply();TextView quote=tv("“"+quotes[q]+"”",23,Color.WHITE,true);quote.setBackgroundColor(Color.rgb(16,54,105));quote.setPadding(22,22,22,22);root.addView(quote);
+        LinearLayout modes=new LinearLayout(this);modes.setOrientation(LinearLayout.HORIZONTAL);quick=mb("Quick");engineer=mb("Engineer");learning=mb("Learning");modes.addView(quick,new LinearLayout.LayoutParams(0,-2,1));modes.addView(engineer,new LinearLayout.LayoutParams(0,-2,1));modes.addView(learning,new LinearLayout.LayoutParams(0,-2,1));root.addView(modes);setMode(engineer,"Engineer");quick.setOnClickListener(v->setMode(quick,"Quick"));engineer.setOnClickListener(v->setMode(engineer,"Engineer"));learning.setOnClickListener(v->setMode(learning,"Learning"));
+        root.addView(tv("Choose Calculator",22,Color.WHITE,true));calc=new Spinner(this);ArrayAdapter<String>a=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,names);calc.setAdapter(a);calc.setBackgroundColor(Color.WHITE);root.addView(calc,new LinearLayout.LayoutParams(-1,70));fields=new LinearLayout(this);fields.setOrientation(LinearLayout.VERTICAL);root.addView(fields);output=new LinearLayout(this);output.setOrientation(LinearLayout.VERTICAL);root.addView(output);calc.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener(){public void onItemSelected(android.widget.AdapterView<?>p,View v,int pos,long id){makeFields(pos);}public void onNothingSelected(android.widget.AdapterView<?>p){}});
     }
-    @Override public void onBackPressed() {
-        if (webView.canGoBack()) webView.goBack(); else super.onBackPressed();
-    }
+    Button mb(String s){Button b=new Button(this);b.setText(s);b.setTextSize(15);b.setAllCaps(false);return b;}
+    void setMode(Button b,String m){mode=m;quick.setBackgroundColor(Color.rgb(30,48,78));engineer.setBackgroundColor(Color.rgb(30,48,78));learning.setBackgroundColor(Color.rgb(30,48,78));b.setBackgroundColor(Color.rgb(34,111,215));}
+    void makeFields(int pos){fields.removeAllViews();output.removeAllViews();fields.addView(tv(names[pos],25,Color.rgb(80,210,255),true));for(int i=0;i<labels[pos].length;i++){fields.addView(tv(labels[pos][i],16,Color.WHITE,true));in[i]=new EditText(this);in[i].setTextColor(Color.WHITE);in[i].setHintTextColor(Color.LTGRAY);in[i].setInputType(8194);in[i].setBackgroundColor(Color.rgb(15,35,67));in[i].setPadding(15,10,15,10);fields.addView(in[i],new LinearLayout.LayoutParams(-1,65));}Button go=new Button(this);go.setText("CALCULATE");go.setTextSize(20);go.setTextColor(Color.rgb(3,32,45));go.setBackgroundColor(Color.rgb(56,220,130));go.setOnClickListener(v->calculate(pos));fields.addView(go,new LinearLayout.LayoutParams(-1,72));}
+    double d(int i){String s=in[i].getText().toString().trim();if(s.length()==0)throw new ExceptionInInitializerError();return Double.parseDouble(s);}
+    void calculate(int p){output.removeAllViews();try{double x=0;String w="";switch(p){case 0:x=d(0)*d(1);w="V = "+d(0)+" x "+d(1);break;case 1:x=d(0)/d(1);w="I = "+d(0)+" / "+d(1);break;case 2:x=d(0)*d(1);w="P = "+d(0)+" x "+d(1);break;case 3:x=d(0)*1000/(d(1)*d(2)*d(3)/100);w="I = "+(d(0)*1000)+" / ("+d(1)+" x "+d(2)+" x "+(d(3)/100)+")";break;case 4:x=d(0)*1000/(Math.sqrt(3)*d(1)*d(2)*d(3)/100);w="I = "+(d(0)*1000)+" / (1.732 x "+d(1)+" x "+d(2)+" x "+(d(3)/100)+")";break;case 5:x=Math.sqrt(3)*d(0)*d(1)/1000;w="S = 1.732 x "+d(0)+" x "+d(1)+" / 1000";break;case 6:x=d(0)*1000000/(Math.sqrt(3)*d(1)*1000);w="I = "+(d(0)*1000000)+" / (1.732 x "+(d(1)*1000)+")";break;case 7:double ir=d(0)*1000000/(Math.sqrt(3)*d(1)*1000);x=ir*100/d(2);w="Irated = "+fmt(ir)+" A\nIsc = "+fmt(ir)+" x 100 / "+d(2);break;case 8:x=d(0)/d(1)*100;w="Loading = "+d(0)+" / "+d(1)+" x 100";break;case 9:x=120*d(0)/d(1);w="Ns = 120 x "+d(0)+" / "+d(1);break;case 10:x=9550*d(0)/d(1);w="T = 9550 x "+d(0)+" / "+d(1);break;case 11:x=d(1)+(d(0)-4)/16*(d(2)-d(1));w="PV = "+d(1)+" + ("+d(0)+"-4)/16 x ("+d(2)+"-"+d(1)+")";break;case 12:x=d(0)*d(1)*d(2)/100/d(3);w="Hours = "+d(0)+" x "+d(1)+" x "+(d(2)/100)+" / "+d(3);break;case 13:x=Math.sqrt(3)*d(0)*d(1);w="Ssc = 1.732 x "+d(0)+" x "+d(1);break;case 14:x=d(0)/d(1)*100;w="Loading = "+d(0)+" / "+d(1)+" x 100";break;}
+            TextView ans=tv("FINAL ANSWER\n"+fmt(x)+" "+units[p],30,Color.WHITE,true);ans.setBackgroundColor(Color.rgb(14,104,118));ans.setPadding(20,20,20,20);output.addView(ans);if(!mode.equals("Quick")){output.addView(section("Formula",formulas[p]));output.addView(section("Working",w+"\nAnswer = "+fmt(x)+" "+units[p]));output.addView(section("Engineering Note","Calculation aid only. Confirm equipment ratings, manufacturer data, protection studies, site conditions and applicable IEC/IEEE/BS/local requirements before field implementation."));}if(mode.equals("Learning")){String origin=(p==0||p==1)?"Associated scientist: Georg Simon Ohm; relationship published in 1827.":(p==4?"Balanced three-phase relationship developed from polyphase AC theory; no single inventor attribution.":(p==7?"Derived from transformer per-unit / percentage impedance principles.":"Established electrical engineering relationship; no single inventor is assigned unless historically well established."));output.addView(section("Learning Mode","Derivation: obtained from the displayed electrical relationship by algebraic rearrangement with consistent units.\n\nFormula origin: "+origin+"\n\nWorked example: your entered values above are the example and the substitution is shown in Working."));}
+        }catch(Exception e){output.addView(section("Check Inputs","Enter valid numeric values in every required field."));}}
+    TextView section(String h,String s){TextView t=tv(h+"\n"+s,17,Color.WHITE,false);t.setBackgroundColor(Color.rgb(12,29,55));t.setPadding(18,15,18,15);LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(-1,-2);lp.setMargins(0,10,0,0);t.setLayoutParams(lp);return t;}
+    String fmt(double x){if(Math.abs(x)>=1000)return String.format(Locale.US,"%,.3f",x);return String.format(Locale.US,"%.3f",x).replaceAll("0+$","").replaceAll("\\.$","");}
 }
