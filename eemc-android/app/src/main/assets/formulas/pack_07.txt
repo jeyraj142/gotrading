@@ -1,0 +1,14 @@
+SCADA / RTU / Instrumentation|4-20 mA Scaling|PV = LRV + (mA−4)/16(URV−LRV)
+SCADA / RTU / Instrumentation|Engineering to 4-20 mA|mA = 4 + 16(PV−LRV)/(URV−LRV)
+SCADA / RTU / Instrumentation|0-10 V Scaling|PV = LRV + V/10(URV−LRV)
+SCADA / RTU / Instrumentation|ADC Scaling|PV = LRV + Raw/Rawmax(URV−LRV)
+SCADA / RTU / Instrumentation|Percent Span|% = (PV−LRV)/(URV−LRV)×100
+SCADA / RTU / Instrumentation|Linear Interpolation|y = y1 +(x−x1)(y2−y1)/(x2−x1)
+Battery / UPS / DC|Battery Energy|Wh = V×Ah
+Battery / UPS / DC|Battery Backup|h = V×Ah×η/Pload
+Battery / UPS / DC|Battery Current|I = P/V
+Battery / UPS / DC|Series Battery Voltage|Vt = nV
+Battery / UPS / DC|Parallel Battery Capacity|Aht = nAh
+Battery / UPS / DC|UPS Load|Load% = kWload/kWrated×100
+Battery / UPS / DC|Charging Time Approx.|t = Ah/Icharge × factor
+Battery / UPS / DC|DC Voltage Drop|ΔV = 2ILR
