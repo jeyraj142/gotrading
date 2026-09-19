@@ -1,0 +1,21 @@
+name: Package EEMC Source
+
+on:
+  push:
+    branches: [eemc-native-pro]
+  workflow_dispatch:
+
+jobs:
+  package-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Package source
+        run: |
+          zip -r EEMC-Native-Pro-Source.zip eemc-android .github/workflows/eemc-apk.yml README.md
+      - name: Upload source
+        uses: actions/upload-artifact@v4
+        with:
+          name: EEMC-Native-Pro-Source
+          path: EEMC-Native-Pro-Source.zip
