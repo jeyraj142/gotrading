@@ -1,0 +1,18 @@
+Power Factor & Capacitors|PF Correction kVAR|Qc = P(tanφ1−tanφ2)
+Power Factor & Capacitors|Capacitor Current 3φ|I = Q/(√3V)
+Power Factor & Capacitors|Capacitive Reactance|XC = 1/(2πfC)
+Power Factor & Capacitors|Capacitor Energy|E = ½CV²
+Power Factor & Capacitors|Capacitors Parallel|Ct = ΣC
+Power Factor & Capacitors|Capacitors Series|1/Ct = Σ(1/C)
+Transformers|Full Load Current 3φ|I = S/(√3V)
+Transformers|Turns Ratio|a = Vp/Vs = Np/Ns
+Transformers|Current Ratio|Ip/Is = Ns/Np
+Transformers|Transformer Loading|Loading% = Sactual/Srated ×100
+Transformers|Transformer Efficiency|η = Pout/Pin ×100
+Transformers|Voltage Regulation|VR% = (Vnl−Vfl)/Vfl ×100
+Transformers|Copper Loss Scaling|Pcu,x = x²Pcu,FL
+Transformers|All-day Efficiency|ηad = kWhout/kWhin ×100
+Transformers|Fault Current from Z%|Isc = Irated×100/Z%
+Transformers|Short Circuit MVA|Ssc = Srated×100/Z%
+Transformers|Per-unit Impedance|Zpu = Z%/100
+Transformers|Parallel Load Sharing|S1/S2 ≈ Z2/Z1
