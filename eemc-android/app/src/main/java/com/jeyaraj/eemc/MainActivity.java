@@ -13,15 +13,19 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setStatusBarColor(Color.rgb(6,75,121));
         webView=new WebView(this);
+        webView.setBackgroundColor(Color.WHITE);
         setContentView(webView);
         WebSettings s=webView.getSettings();
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(true);
         s.setAllowContentAccess(true);
+        s.setAllowFileAccessFromFileURLs(true);
+        s.setAllowUniversalAccessFromFileURLs(true);
         s.setBuiltInZoomControls(false);
         s.setDisplayZoomControls(false);
-        s.setCacheMode(WebSettings.LOAD_DEFAULT);
+        s.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        s.setDatabaseEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("file:///android_asset/index.html");
     }
