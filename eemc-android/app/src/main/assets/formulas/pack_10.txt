@@ -1,0 +1,11 @@
+Busbar / Panel|Busbar Current Density|J = I/A
+Busbar / Panel|Busbar Cross Section|A = I/J
+Busbar / Panel|Panel Load|Ptotal = ΣPloads
+Busbar / Panel|Panel Demand|Pdemand = Connected×Demand Factor
+Busbar / Panel|Spare Capacity|Spare% = (Rating−Load)/Rating×100
+Maintenance & Testing|Polarization Index|PI = IR10min/IR1min
+Maintenance & Testing|Dielectric Absorption Ratio|DAR = IR60s/IR30s
+Maintenance & Testing|Winding Resistance Deviation|Dev% = (Rmax−Rmin)/Ravg×100
+Maintenance & Testing|Contact Resistance Power|P = I²R
+Maintenance & Testing|MTBF|MTBF = Total operating time/Failures
+Maintenance & Testing|MTTR|MTTR = Total repair time/Repairs
