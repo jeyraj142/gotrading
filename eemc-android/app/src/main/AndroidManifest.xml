@@ -11,6 +11,11 @@
             android:exported="false" />
 
         <activity
+            android:name=".FormulaLibraryActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+
+        <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:exported="true">
